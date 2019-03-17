@@ -14,7 +14,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
 public class CrimeFragment extends Fragment {
-    private Crime mCrime;
+    private Crime mCrime; // Переменная для экземпляра Crime
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
@@ -27,14 +27,16 @@ public class CrimeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_crime, container, false);
+        View v = inflater.inflate(R.layout.fragment_crime, container, false); // Заполнение разметки фрагмента из XML-файла
 
         mSolvedCheckBox = v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mCrime.setSolved(isChecked);
             }
+
         });
 
         mDateButton = v.findViewById(R.id.crime_date);
@@ -45,23 +47,22 @@ public class CrimeFragment extends Fragment {
         mTitleField.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void beforeTextChanged(
-                    CharSequence s, int start, int count, int after) {
-// Здесь намеренно оставлено пустое место
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Здесь намеренно оставлено пустое место
             }
 
             @Override
             public void onTextChanged(
                     CharSequence s, int start, int before, int count) {
-                mCrime.setTitle(s.toString());
+                mCrime.setTitle(s.toString()); // toString() возвращает строку, которая используется для заголовка Crime
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-// И здесь тоже
+                // И здесь тоже
             }
 
         });
-        return v;
+        return v; // Возвращение заполненного View фрагмента хосту CrimeActivity
     }
 }

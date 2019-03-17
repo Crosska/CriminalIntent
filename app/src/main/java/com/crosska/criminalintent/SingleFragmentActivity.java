@@ -13,13 +13,14 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-        FragmentManager fm = getSupportFragmentManager();
+        FragmentManager fm = getSupportFragmentManager(); // Получение экземпляра CrimeFragment от FragmentManager по идентификатору контейнерного представления
+
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
         if (fragment == null) {
             fragment = createFragment();
             fm.beginTransaction()
-                    .add(R.id.fragment_container, fragment)
-                    .commit();
+                    .add(R.id.fragment_container, fragment) // Параметры: идентификатор контейнерного представления и объект CrimeFragment
+                    .commit(); // Передача менеджеру фрагмент для управления
         }
     }
 
